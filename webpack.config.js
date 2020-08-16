@@ -11,19 +11,36 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.css$/,
-            use: [
-                'style-loader',
+                test: /\.css$/,
+                use: [
+                    'style-loader',
 
-                {
-                    loader: 'css-loader',
-                    options: {
-                        importLoaders: 1
-                    }
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    'postcss-loader'
+                ]
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                loader: 'file-loader',
+                options: {
+                    name(resourcePath, resourceQuery) {
+                        // `resourcePath` - `/absolute/path/to/file.js`
+                        // `resourceQuery` - `?foo=bar`
+
+                        if (process.env.NODE_ENV === 'development') {
+                            return 'img/[name].[ext]';
+                        }
+
+                        return '[contenthash].[ext]';
+                    },
                 },
-                'postcss-loader'
-            ]
-        }]
+            },
+        ]
     },
     //settings for watching file changes
     watchOptions: {
