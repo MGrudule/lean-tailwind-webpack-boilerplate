@@ -1,0 +1,9 @@
+*.log
+.cache
+dist
+.DS_Store
+src/.temp
+node_modules
+.env
+.env.*
+static/rss.xml

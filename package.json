@@ -1,0 +1,25 @@
+{
+  "name": "lean-tailwind-webpack-boilerplate",
+  "version": "1.0.0",
+  "description": "a quick starter template to build with tailiwind",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run develop",
+    "develop": "webpack-dev-server --mode development",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^4.2.1",
+    "html-webpack-plugin": "^4.3.0",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "tailwindcss": "^1.6.2"
+  }
+}
