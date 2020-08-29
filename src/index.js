@@ -1,5 +1,8 @@
 import './style.css';
 
+import './render_pass';
+import './anime_settings';
+
 function importAll(r) {
     return r.keys().map(r);
 }

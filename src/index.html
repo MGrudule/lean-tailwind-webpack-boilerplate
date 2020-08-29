@@ -7,29 +7,133 @@
   <title><%= htmlWebpackPlugin.options.title %></title>
   <link rel="stylesheet" href="style.css" />
 </head>
+<style>
+  body {
+    background-color: black;
+  }
 
-<body class="flex flex-col min-h-screen justify-center items-center">
-  <h1>Hello World</h1>
-  <div class="max-w-sm rounded overflow-hidden shadow-lg">
-    <div class="flex items-center justify-center py-3">
-      <img class="object-cover rounded-full w-48" src="img/card.png" alt="mandala" />
+  .canvas-wrapper {
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    display: block;
+
+  }
+
+  #canvas {
+    position: fixed;
+    top: -10vh;
+    right: 0;
+    left: 0;
+    height: 120vh;
+    width: 120vw;
+    z-index: -1;
+    opacity: 0;
+    animation: load 5s ease-out forwards;
+  }
+
+  .small-plane {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+
+  }
+
+  .bg-split {
+    animation: load 5s ease-out forwards;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(90deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.9) 34%,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 0.9) 64%,
+        rgba(255, 255, 255, 0) 100%);
+  }
+</style>
+
+<body class="bg-black">
+  <div class="flex flex-col min-h-screen justify-center items-center relative overflow-hidden top-0">
+    <div class="canvas-wrapper overflow-hidden">
+      <div class="bg-split h-screen w-screen absolute z-20"></div>
+      <div id="canvas"></div>
+      <div class="small-plane">
+        <img class="" src="img/coho_5.png" alt="mandala" data-sampler="planeTexture" style="display: none" />
+      </div>
     </div>
-    <div class="px-6 py-4">
-      <div class="font-bold text-xl mb-2">Test image import</div>
-      <p class="text-gray-700 text-base">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-        quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-        nihil.
-      </p>
-    </div>
-    <div class="px-6 py-4">
-      <span
-        class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
-      <span
-        class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
+
+    <div class="logo z-30 w-100">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1590.44" height="159.431">
+        <g style="mix-blend-mode: luminosity" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1.6"
+          transform="matrix(3.77953 0 0 3.77953 1206.15 -511.845)">
+          <a transform="translate(-195.699 66.182)">
+            <g transform="translate(.32 -.11)">
+              <path d="M16.564 101.094c8.096 0 7.536.804 12.034-14.234 4.498-15.038 7.006-13.804 13.303-13.804" />
+              <path d="M43.264 107.879c-8.096 0-9.964.534-14.462-14.504-4.498-15.038-5.941-13.534-12.238-13.534" />
+              <rect width="14.147" height="25.817" x="46.618" y="77.854" rx="7.073" ry="7.152" />
+              <circle cx="57.937" cy="102.217" r="2.4" />
+              <rect width="14.147" height="25.817" x="46.618" y="77.854" rx="7.073" ry="7.152" />
+              <path d="M79.445 77.349v19.558c0 5.402-6.153 6.93-9.87 6.93-3.718 0-3.55-2.33-3.55-6.51V77.348" />
+              <path stroke-width="4.109" d="M-75.578-100.087h-9.305l4.653-8.058z"
+                transform="matrix(-.40108 0 0 -.37798 46.61 62.607)" />
+              <circle cx="86.658" cy="71.917" r="1.764" />
+              <circle cx="38.718" cy="90.445" r="1.764" />
+              <path stroke-linecap="butt" d="M18.007 101.094h-141.756M16.564 79.841h-140.199" />
+            </g>
+          </a>
+          <a transform="rotate(180 -10.876 123.426)">
+            <g transform="translate(.32 -.11)">
+              <path d="M16.564 101.094c8.096 0 7.536.804 12.034-14.234 4.498-15.038 7.006-13.804 13.303-13.804" />
+              <path d="M43.264 107.879c-8.096 0-9.964.534-14.462-14.504-4.498-15.038-5.941-13.534-12.238-13.534" />
+              <rect width="14.147" height="25.817" x="46.618" y="77.854" rx="7.073" ry="7.152" />
+              <circle cx="57.937" cy="102.217" r="2.4" />
+              <rect width="14.147" height="25.817" x="46.618" y="77.854" rx="7.073" ry="7.152" />
+              <path d="M79.445 77.349v19.558c0 5.402-6.153 6.93-9.87 6.93-3.718 0-3.55-2.33-3.55-6.51V77.348" />
+              <path stroke-width="4.109" d="M-75.578-100.087h-9.305l4.653-8.058z"
+                transform="matrix(-.40108 0 0 -.37798 46.61 62.607)" />
+              <circle cx="86.658" cy="71.917" r="1.764" />
+              <circle cx="38.718" cy="90.445" r="1.764" />
+              <path stroke-linecap="butt" d="M18.007 101.094h-141.756M16.564 79.841h-140.199" />
+            </g>
+          </a>
+        </g>
+      </svg>
     </div>
   </div>
+  <section class="bg-white my-5 py-20">
+    <div class="container mx-auto">
+      <h1 class="text-3xl font-display"><mark>hello</mark> world</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique
+        numquam corrupti quisquam suscipit omnis accusantium repellendus
+        consequuntur atque ducimus minima. Expedita est repellat numquam
+        necessitatibus animi, totam atque cupiditate perferendis.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, veniam
+        eveniet. Quae rerum voluptas qui deleniti aliquid ducimus
+        exercitationem nihil sit minima? Quod commodi rerum dignissimos
+        sapiente laudantium, similique accusamus!
+      </p>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Similique
+        numquam corrupti quisquam suscipit omnis accusantium repellendus
+        consequuntur atque ducimus minima. Expedita est repellat numquam
+        necessitatibus animi, totam atque cupiditate perferendis.
+      </p>
+
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, veniam
+        eveniet. Quae rerum voluptas qui deleniti aliquid ducimus
+        exercitationem nihil sit minima? Quod commodi rerum dignissimos
+        sapiente laudantium, similique accusamus!
+      </p>
+    </div>
+  </section>
 </body>
 
 </html>
